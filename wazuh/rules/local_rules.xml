@@ -1,0 +1,129 @@
+<!-- siem-lab custom rules (ids 100100-100199). Ported from evtx-triage/evtxtriage/rules.py.
+     Fields follow Wazuh's windows_eventchannel decoder (win.system.*, win.eventdata.*). -->
+<group name="siemlab,windows,authentication,">
+
+  <!-- building blocks (low level, used by correlation rules) -->
+  <rule id="100100" level="3">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4625$</field>
+    <description>siem-lab: failed logon for $(win.eventdata.targetUserName) from $(win.eventdata.ipAddress)</description>
+    <group>authentication_failed,</group>
+  </rule>
+
+  <rule id="100101" level="3">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4771$</field>
+    <field name="win.eventdata.status" type="pcre2">(?i)^0x0*18$</field>
+    <description>siem-lab: Kerberos pre-auth failed (bad password) for $(win.eventdata.targetUserName)</description>
+    <group>authentication_failed,</group>
+  </rule>
+
+  <rule id="100102" level="3">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4768$</field>
+    <field name="win.eventdata.status" type="pcre2">(?i)^0x0*6$</field>
+    <description>siem-lab: Kerberos TGT for unknown principal $(win.eventdata.targetUserName)</description>
+    <group>authentication_failed,</group>
+  </rule>
+
+  <!-- password spray: >=5 distinct accounts from same source in 120s -->
+  <rule id="100110" level="12" frequency="5" timeframe="120">
+    <if_matched_sid>100100</if_matched_sid>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <different_field>win.eventdata.targetUserName</different_field>
+    <description>siem-lab: password spray (4625) - 5+ accounts from $(win.eventdata.ipAddress)</description>
+    <mitre><id>T1110.003</id></mitre>
+  </rule>
+
+  <rule id="100111" level="12" frequency="5" timeframe="120">
+    <if_matched_sid>100101</if_matched_sid>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <different_field>win.eventdata.targetUserName</different_field>
+    <description>siem-lab: Kerberos password spray (4771 0x18) from $(win.eventdata.ipAddress)</description>
+    <mitre><id>T1110.003</id></mitre>
+  </rule>
+
+  <rule id="100112" level="10" frequency="5" timeframe="120">
+    <if_matched_sid>100102</if_matched_sid>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <different_field>win.eventdata.targetUserName</different_field>
+    <description>siem-lab: Kerberos user enumeration/spray (4768 0x6) from $(win.eventdata.ipAddress)</description>
+    <mitre><id>T1110.003</id><id>T1087.002</id></mitre>
+  </rule>
+
+  <!-- successful logon for an account with >=5 failures in last 10 min -->
+  <rule id="100113" level="3">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4624$</field>
+    <description>siem-lab: successful logon $(win.eventdata.targetUserName)</description>
+    <group>authentication_success,</group>
+  </rule>
+
+  <rule id="100114" level="13" frequency="5" timeframe="600">
+    <if_sid>100113</if_sid>
+    <if_matched_sid>100100</if_matched_sid>
+    <same_field>win.eventdata.targetUserName</same_field>
+    <description>siem-lab: $(win.eventdata.targetUserName) logged on after 5+ failures (possible brute-force success)</description>
+    <mitre><id>T1110</id><id>T1078</id></mitre>
+  </rule>
+
+  <!-- 4672 special privileges, skipping machine ($) and built-in accounts -->
+  <rule id="100120" level="6">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4672$</field>
+    <field name="win.eventdata.subjectUserName" negate="yes" type="pcre2">(?i)(\$$|^(SYSTEM|LOCAL SERVICE|NETWORK SERVICE|ANONYMOUS LOGON|DWM-\d+|UMFD-\d+)$)</field>
+    <description>siem-lab: special privileges at logon for $(win.eventdata.subjectUserName)</description>
+    <mitre><id>T1078</id></mitre>
+  </rule>
+
+  <rule id="100121" level="8">
+    <if_sid>100120</if_sid>
+    <field name="win.eventdata.privilegeList" type="pcre2">SeDebugPrivilege</field>
+    <description>siem-lab: SeDebugPrivilege granted at logon to $(win.eventdata.subjectUserName)</description>
+    <mitre><id>T1078</id><id>T1134</id></mitre>
+  </rule>
+</group>
+
+<group name="siemlab,windows,defense_evasion,">
+  <rule id="100130" level="12">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^1102$</field>
+    <field name="win.system.channel">^Security$</field>
+    <description>siem-lab: Security event log cleared by $(win.eventdata.subjectUserName)</description>
+    <mitre><id>T1070.001</id></mitre>
+  </rule>
+</group>
+
+<group name="siemlab,windows,powershell,execution,">
+  <rule id="100140" level="12">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4104$</field>
+    <field name="win.eventdata.scriptBlockText" type="pcre2">(?i)(MiniDumpWriteDump|Invoke-Mimikatz|sekurlsa|DumpCreds|Invoke-Shellcode|VirtualAlloc|FromBase64String|Net\.WebClient|DownloadString|AmsiUtils)</field>
+    <description>siem-lab: suspicious PowerShell script block on $(win.system.computer)</description>
+    <mitre><id>T1059.001</id></mitre>
+  </rule>
+</group>
+
+<group name="siemlab,windows,sysmon,credential_access,">
+  <rule id="100150" level="14">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^10$</field>
+    <field name="win.system.channel">^Microsoft-Windows-Sysmon/Operational$</field>
+    <field name="win.eventdata.targetImage" type="pcre2">(?i)\\lsass\.exe$</field>
+    <field name="win.eventdata.grantedAccess" type="pcre2">(?i)^0x0*(1010|1410|1438|143a|1fffff|1f3fff|40)$</field>
+    <description>siem-lab: $(win.eventdata.sourceImage) opened LSASS with $(win.eventdata.grantedAccess)</description>
+    <mitre><id>T1003.001</id></mitre>
+  </rule>
+</group>
+
+<group name="siemlab,windows,sysmon,execution,">
+  <rule id="100160" level="12">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^1$</field>
+    <field name="win.system.channel">^Microsoft-Windows-Sysmon/Operational$</field>
+    <field name="win.eventdata.parentImage" type="pcre2">(?i)\\wmiprvse\.exe$</field>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\(cmd|powershell|pwsh)\.exe$</field>
+    <description>siem-lab: WmiPrvSE spawned shell $(win.eventdata.image)</description>
+    <mitre><id>T1047</id><id>T1059</id></mitre>
+  </rule>
+</group>

@@ -1,0 +1,6 @@
+# siem-lab custom Suricata rules (sid 9000001+)
+alert tcp any any -> $HOME_NET any (msg:"SIEMLAB nmap-style SYN scan (20+ SYNs/10s from one src)"; flags:S,12; flow:stateless; threshold:type both, track by_src, count 20, seconds 10; classtype:attempted-recon; metadata:mitre_technique_id T1046; sid:9000001; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"SIEMLAB nmap NULL scan"; flags:0; flow:stateless; classtype:attempted-recon; metadata:mitre_technique_id T1046; sid:9000002; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"SIEMLAB nmap XMAS scan"; flags:FPU,12; flow:stateless; classtype:attempted-recon; metadata:mitre_technique_id T1046; sid:9000003; rev:1;)
+alert http any any -> $HOME_NET any (msg:"SIEMLAB test signature (benign marker SIEMLAB-TEST-7f3a)"; flow:to_server; content:"SIEMLAB-TEST-7f3a"; http_uri; classtype:misc-activity; sid:9000004; rev:1;)
+alert http any any -> $HOME_NET any (msg:"SIEMLAB Nmap Scripting Engine user-agent"; flow:to_server; content:"Nmap Scripting Engine"; http_user_agent; classtype:attempted-recon; metadata:mitre_technique_id T1595; sid:9000005; rev:1;)

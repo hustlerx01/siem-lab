@@ -1,0 +1,3 @@
+{"win": {"system": {"eventID": "4672", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"subjectUserName": "ansar.admin", "privilegeList": "SeDebugPrivilege SeBackupPrivilege"}}}
+{"win": {"system": {"eventID": "4672", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"subjectUserName": "SYSTEM", "privilegeList": "SeDebugPrivilege"}}}
+{"win": {"system": {"eventID": "4672", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"subjectUserName": "WS01$", "privilegeList": "SeSecurityPrivilege"}}}

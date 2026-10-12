@@ -1,0 +1,6 @@
+{"win": {"system": {"eventID": "4625", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"targetUserName": "svc_backup", "ipAddress": "192.168.56.11", "logonType": "3"}}}
+{"win": {"system": {"eventID": "4625", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"targetUserName": "svc_backup", "ipAddress": "192.168.56.11", "logonType": "3"}}}
+{"win": {"system": {"eventID": "4625", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"targetUserName": "svc_backup", "ipAddress": "192.168.56.11", "logonType": "3"}}}
+{"win": {"system": {"eventID": "4625", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"targetUserName": "svc_backup", "ipAddress": "192.168.56.11", "logonType": "3"}}}
+{"win": {"system": {"eventID": "4625", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"targetUserName": "svc_backup", "ipAddress": "192.168.56.11", "logonType": "3"}}}
+{"win": {"system": {"eventID": "4624", "channel": "Security", "computer": "WS01.lab.local", "systemTime": "2026-10-11T10:00:00Z"}, "eventdata": {"targetUserName": "svc_backup", "ipAddress": "192.168.56.11", "logonType": "3"}}}
