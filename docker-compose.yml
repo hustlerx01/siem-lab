@@ -20,7 +20,7 @@ services:
       - ./config/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
       - ./config/wazuh_indexer_ssl_certs/wazuh.manager.pem:/etc/ssl/filebeat.pem
       - ./config/wazuh_indexer_ssl_certs/wazuh.manager-key.pem:/etc/ssl/filebeat.key
-      - ./wazuh/rules/local_rules.xml:/var/ossec/etc/rules/local_rules.xml
+      - ./wazuh/rules/local_rules.xml:/wazuh-config-mount/etc/rules/local_rules.xml:ro  # direct bind into /var/ossec/etc left ossec.conf missing (2026-10-12 run)
       - ./wazuh/config/ossec-localfile.conf:/wazuh-config-mount/etc/shared/siemlab-localfile.conf:ro
       - suricata-logs:/var/log/suricata:ro
       - ./samples:/siemlab/samples:ro

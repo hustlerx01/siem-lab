@@ -1,0 +1,46 @@
+
+Starting wazuh-logtest v4.9.2
+Type one log per line
+
+**Phase 1: Completed pre-decoding.
+
+**Phase 2: Completed decoding.
+	name: 'json'
+	alert.action: 'allowed'
+	alert.category: 'Attempted Information Leak'
+	alert.gid: '1'
+	alert.metadata.mitre_technique_id: '['T1046']'
+	alert.rev: '1'
+	alert.severity: '2'
+	alert.signature: 'SIEMLAB nmap XMAS scan'
+	alert.signature_id: '9000003'
+	dest_ip: '192.168.56.20'
+	dest_port: '80'
+	direction: 'to_server'
+	event_type: 'alert'
+	flow.bytes_toclient: '0'
+	flow.bytes_toserver: '54'
+	flow.dest_ip: '192.168.56.20'
+	flow.dest_port: '80'
+	flow.pkts_toclient: '0'
+	flow.pkts_toserver: '1'
+	flow.src_ip: '192.168.56.10'
+	flow.src_port: '41001'
+	flow.start: '2025-10-09T08:53:20.031000+0000'
+	flow_id: '133147363465505.000000'
+	pcap_cnt: '32'
+	pkt_src: 'wire/pcap'
+	proto: 'TCP'
+	src_ip: '192.168.56.10'
+	src_port: '41001'
+	timestamp: '2025-10-09T08:53:20.031000+0000'
+
+**Phase 3: Completed filtering (rules).
+	id: '86601'
+	level: '3'
+	description: 'Suricata: Alert - SIEMLAB nmap XMAS scan'
+	groups: '['ids', 'suricata']'
+	firedtimes: '1'
+	mail: 'False'
+**Alert to be generated.
+

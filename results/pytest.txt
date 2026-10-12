@@ -1,7 +1,7 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0 -- .venv/bin/python
+platform linux -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0 -- /tmp/v/bin/python
 cachedir: .pytest_cache
-rootdir: .
+rootdir: /workspace/publish/siem-lab
 collecting ... collected 24 items
 
 tests/test_rules.py::test_xml_well_formed_and_ids_unique PASSED          [  4%]
@@ -27,6 +27,6 @@ tests/test_rules.py::test_wmi_shell_and_benign_child PASSED              [ 83%]
 tests/test_rules.py::test_no_spray_from_brute_single_user PASSED         [ 87%]
 tests/test_rules.py::test_suricata_rules_sids_unique PASSED              [ 91%]
 tests/test_rules.py::test_pcap_generator PASSED                          [ 95%]
-tests/test_rules.py::test_wazuh_logtest_live SKIPPED (docker not ava...) [100%]
+tests/test_rules.py::test_wazuh_logtest_live PASSED                      [100%]
 
-======================== 23 passed, 1 skipped in 0.04s =========================
+============================== 24 passed in 0.51s ==============================

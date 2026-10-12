@@ -1,5 +1,18 @@
 <!-- siem-lab custom rules (ids 100100-100199). Ported from evtx-triage/evtxtriage/rules.py.
      Fields follow Wazuh's windows_eventchannel decoder (win.system.*, win.eventdata.*). -->
+<!-- Bridge rule (added 2026-10-12 after wazuh-logtest 4.9.2 run): JSON replayed via localfile/logtest
+     is decoded by the generic "json" decoder, not the built-in windows_eventchannel decoder (that one is only
+     used for events arriving from a Windows agent's eventchannel queue), so rule 60000 never fires and
+     <if_group>windows</if_group> never matched. This level-0 rule puts decoded win.* JSON into the "windows"
+     group so the same rules work for both replayed JSON and real agent events. -->
+<group name="windows,siemlab_json,">
+  <rule id="100199" level="0">
+    <decoded_as>json</decoded_as>
+    <field name="win.system.eventID">\.+</field>
+    <description>siem-lab: Windows event (win.* JSON) via localfile/logtest</description>
+  </rule>
+</group>
+
 <group name="siemlab,windows,authentication,">
 
   <!-- building blocks (low level, used by correlation rules) -->

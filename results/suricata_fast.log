@@ -1,0 +1,5 @@
+10/09/2025-08:53:20.031000  [**] [1:9000003:1] SIEMLAB nmap XMAS scan [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.56.10:41001 -> 192.168.56.20:80
+10/09/2025-08:53:20.030000  [**] [1:9000002:1] SIEMLAB nmap NULL scan [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.56.10:41000 -> 192.168.56.20:80
+10/09/2025-08:53:20.014000  [**] [1:9000001:1] SIEMLAB nmap-style SYN scan (20+ SYNs/10s from one src) [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.56.10:40015 -> 192.168.56.20:15
+10/09/2025-08:53:20.000000  [**] [1:9000005:1] SIEMLAB Nmap Scripting Engine user-agent [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} 192.168.56.10:50000 -> 192.168.56.20:80
+10/09/2025-08:53:20.000000  [**] [1:9000004:1] SIEMLAB test signature (benign marker SIEMLAB-TEST-7f3a) [**] [Classification: Misc activity] [Priority: 3] {TCP} 192.168.56.10:50000 -> 192.168.56.20:80

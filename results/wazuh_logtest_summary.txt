@@ -1,0 +1,16 @@
+# wazuh-logtest per-file final rule hits (custom 1001xx), wazuh-manager 4.9.2, 2026-10-12
+samples/evtx/CA_4624_4625_LogonType2_LogonProc_chrome.jsonl {'100100/L3': 1, '100113/L3': 3}
+samples/evtx/DE_1102_security_log_cleared.jsonl {'100130/L12': 1, '100199/L0': 111}
+samples/evtx/DE_Fake_ComputerAccount_4720.jsonl {'100199/L0': 2}
+samples/evtx/DE_renamed_psexec_service_sysmon_17_18.jsonl {'100199/L0': 11}
+samples/evtx/LM_WMI_4624_4688_TargetHost.jsonl {'100113/L3': 6, '100199/L0': 2}
+samples/evtx/LM_renamed_psexecsvc_5145.jsonl {'100199/L0': 22}
+samples/evtx/Powershell_4104_MiniDumpWriteDump_Lsass.jsonl {'100199/L0': 3, '100140/L12': 1}
+samples/evtx/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.jsonl {'100199/L0': 8}
+samples/evtx/kerberos_pwd_spray_4771.jsonl {'100130/L12': 1, '100102/L3': 6, '100112/L10': 1, '100101/L3': 2, '100199/L0': 2}
+samples/evtx/persist_firefox_comhijack_sysmon_11_13_7_1.jsonl {'100199/L0': 19}
+samples/evtx/sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.jsonl {'100150/L14': 1}
+samples/synthetic/logon_after_failures.jsonl {'100100/L3': 5, '100114/L13': 1}
+samples/synthetic/special_privs_4672.jsonl {'100121/L8': 1, '100199/L0': 2}
+samples/synthetic/spray_4625.jsonl {'100100/L3': 5, '100110/L12': 1}
+samples/synthetic/wmi_shell.jsonl {'100160/L12': 1, '100199/L0': 1}
