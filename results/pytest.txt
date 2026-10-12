@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.1.1, pluggy-1.6.0 -- .venv/bin/python
+cachedir: .pytest_cache
+rootdir: .
+collecting ... collected 24 items
+
+tests/test_rules.py::test_xml_well_formed_and_ids_unique PASSED          [  4%]
+tests/test_rules.py::test_required_rule_and_mitre[password_spray_4625] PASSED [  8%]
+tests/test_rules.py::test_required_rule_and_mitre[kerberos_spray_4771] PASSED [ 12%]
+tests/test_rules.py::test_required_rule_and_mitre[kerberos_enum_4768] PASSED [ 16%]
+tests/test_rules.py::test_required_rule_and_mitre[logon_after_failures] PASSED [ 20%]
+tests/test_rules.py::test_required_rule_and_mitre[special_privileges_4672] PASSED [ 25%]
+tests/test_rules.py::test_required_rule_and_mitre[security_log_cleared] PASSED [ 29%]
+tests/test_rules.py::test_required_rule_and_mitre[suspicious_scriptblock] PASSED [ 33%]
+tests/test_rules.py::test_required_rule_and_mitre[lsass_access] PASSED   [ 37%]
+tests/test_rules.py::test_required_rule_and_mitre[wmi_spawned_shell] PASSED [ 41%]
+tests/test_rules.py::test_regexes_compile PASSED                         [ 45%]
+tests/test_rules.py::test_if_sid_references_exist PASSED                 [ 50%]
+tests/test_rules.py::test_real_1102_cleared PASSED                       [ 54%]
+tests/test_rules.py::test_real_4104_minidump PASSED                      [ 58%]
+tests/test_rules.py::test_real_lsass_sysmon10 PASSED                     [ 62%]
+tests/test_rules.py::test_real_kerberos_spray PASSED                     [ 66%]
+tests/test_rules.py::test_spray_4625 PASSED                              [ 70%]
+tests/test_rules.py::test_logon_after_failures PASSED                    [ 75%]
+tests/test_rules.py::test_special_privs_skip_system_and_machine PASSED   [ 79%]
+tests/test_rules.py::test_wmi_shell_and_benign_child PASSED              [ 83%]
+tests/test_rules.py::test_no_spray_from_brute_single_user PASSED         [ 87%]
+tests/test_rules.py::test_suricata_rules_sids_unique PASSED              [ 91%]
+tests/test_rules.py::test_pcap_generator PASSED                          [ 95%]
+tests/test_rules.py::test_wazuh_logtest_live SKIPPED (docker not ava...) [100%]
+
+======================== 23 passed, 1 skipped in 0.04s =========================

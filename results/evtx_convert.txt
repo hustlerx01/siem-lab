@@ -1,0 +1,11 @@
+CA_4624_4625_LogonType2_LogonProc_chrome.evtx: 4 events
+DE_1102_security_log_cleared.evtx: 112 events
+DE_Fake_ComputerAccount_4720.evtx: 2 events
+DE_renamed_psexec_service_sysmon_17_18.evtx: 11 events
+LM_WMI_4624_4688_TargetHost.evtx: 8 events
+LM_renamed_psexecsvc_5145.evtx: 22 events
+Powershell_4104_MiniDumpWriteDump_Lsass.evtx: 4 events
+exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx: 8 events
+kerberos_pwd_spray_4771.evtx: 12 events
+persist_firefox_comhijack_sysmon_11_13_7_1.evtx: 19 events
+sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.evtx: 1 events

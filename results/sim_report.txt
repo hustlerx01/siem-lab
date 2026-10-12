@@ -1,0 +1,15 @@
+samples/evtx/CA_4624_4625_LogonType2_LogonProc_chrome.jsonl: -
+samples/evtx/DE_1102_security_log_cleared.jsonl: {'100130': 1}
+samples/evtx/DE_Fake_ComputerAccount_4720.jsonl: -
+samples/evtx/DE_renamed_psexec_service_sysmon_17_18.jsonl: -
+samples/evtx/LM_WMI_4624_4688_TargetHost.jsonl: -
+samples/evtx/LM_renamed_psexecsvc_5145.jsonl: -
+samples/evtx/Powershell_4104_MiniDumpWriteDump_Lsass.jsonl: {'100140': 1}
+samples/evtx/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.jsonl: -
+samples/evtx/kerberos_pwd_spray_4771.jsonl: {'100112': 3, '100130': 1}
+samples/evtx/persist_firefox_comhijack_sysmon_11_13_7_1.jsonl: -
+samples/evtx/sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.jsonl: {'100150': 1}
+samples/synthetic/logon_after_failures.jsonl: {'100114': 1}
+samples/synthetic/special_privs_4672.jsonl: {'100120': 1, '100121': 1}
+samples/synthetic/spray_4625.jsonl: {'100110': 2}
+samples/synthetic/wmi_shell.jsonl: {'100160': 1}
